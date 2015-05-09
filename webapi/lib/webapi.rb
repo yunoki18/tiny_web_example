@@ -5,6 +5,7 @@ require_relative 'webapi/version'
 require_relative 'webapi/initializer'
 require_relative 'webapi/configurations'
 require_relative 'webapi/configurations/webapi'
+require_relative 'webapi/endpoints/0.0.1/webapi'
 
 module Webapi
   include Webapi::Initializer
