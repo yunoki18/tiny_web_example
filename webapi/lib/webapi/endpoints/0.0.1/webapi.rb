@@ -1,12 +1,32 @@
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
 
 require 'sinatra/base'
-require 'json'
+require 'sinatra/web_api_setup'
 
 module Webapi
   module Endpoints
     module V001
       class Webapi < Sinatra::Base
+        register Sinatra::WebAPISetup
+        include ::Webapi::Endpoints
+        include ::Webapi::Endpoints::Helpers
+
+        E = ::Webapi::Endpoints::Errors
+        M = ::Webapi::Models
+        R = ::Webapi::Endpoints::V001::Responses
+
+        def collection_respond_with(ds, &blk)
+          respond_with([{
+                          :total => ds.count,
+                          :results => blk.call(ds)
+                        }])
+        end
+
+        load_namespace('comments')
+
+        # default output format.
+        respond_to :json, :yml
+
         def desc_api
           {:description => 'comments', :uri => request.url + '/comments'}
         end

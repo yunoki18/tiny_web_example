@@ -2,7 +2,7 @@ Sequel.migration do
   up do
     create_table(:comments) do
       primary_key :id, :type=>"int(11)"
-      column :name, "varchar(255)", :null=>false
+      column :display_name, "varchar(255)", :null=>false
       column :description, "varchar(255)"
       column :comment, "text", :null=>false
       column :created_at, "datetime", :null=>false

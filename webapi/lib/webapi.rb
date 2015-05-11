@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 
 WEBAPI_ROOT = ENV['WEBAPI_ROOT'] || File.expand_path('../../', __FILE__)
-require_relative 'webapi/version'
-require_relative 'webapi/initializer'
-require_relative 'webapi/configurations'
-require_relative 'webapi/configurations/webapi'
-require_relative 'webapi/endpoints/0.0.1/webapi'
+require 'webapi/version'
+require 'webapi/initializer'
 
 module Webapi
   include Webapi::Initializer
@@ -20,4 +17,27 @@ module Webapi
       end
     }
   }
+
+  require 'webapi/configurations'
+  module Configurations
+    autoload :Webapi, 'webapi/configurations/webapi'
+  end
+
+  require 'webapi/models/errors'
+  module Models
+    autoload :BaseNew, 'webapi/models/base'
+    autoload :Comment, 'webapi/models/comment'
+  end
+
+  module Endpoints
+    autoload :Helpers, 'webapi/endpoints/helpers'
+    autoload :Errors, 'webapi/endpoints/errors'
+    autoload :ResponseGenerator, 'webapi/endpoints/response_generator'
+    module V001
+      autoload :Webapi, 'webapi/endpoints/0.0.1/webapi'
+      autoload :Comment, 'webapi/endpoints/0.0.1/comments'
+      module Responses
+      end
+    end
+  end
 end

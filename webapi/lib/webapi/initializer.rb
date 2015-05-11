@@ -7,14 +7,6 @@ module Webapi
     end
 
     module ClassMethods
-      # def conf
-      #   Webapi::Configurations.last
-      # end
-
-      # def load_conf(conf_class, files = nil)
-      #   Webapi::Configurations.load(conf_class, files)
-      # end
-
       def run_initializers(*files)
         unless Webapi::Configurations.loaded?
           raise "Complete the configuration prior to run_initializers()."
