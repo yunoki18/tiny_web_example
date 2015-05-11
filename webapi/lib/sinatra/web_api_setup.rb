@@ -63,7 +63,7 @@ module Sinatra
         @params.merge!(hash.values.first)
       end
 
-      error(Webapi::Models::ModelError, Sequel::DatabaseError) do |boom|
+      error(Webapi::Models::ModelError, Sequel::DatabaseError, Sequel::ValidationFailed) do |boom|
         logger.error(boom)
         boom = Webapi::Endpoints::Errors::DatabaseError.new("#{boom.class}: #{boom.message}")
         status(boom.http_status)
