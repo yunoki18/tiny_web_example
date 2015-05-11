@@ -11,3 +11,7 @@ gem "mysql2"
 gem "sequel"
 gem "unicorn"
 gem "unicorn-worker-killer"
+
+group :test do
+  gem "rspec"
+end
