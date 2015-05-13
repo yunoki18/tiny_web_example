@@ -47,8 +47,13 @@ module Webapi
           405
         end
 
+        error 400 do
+          response.header['Allow'] = 'GET, POST'
+          {:code => 400, :message => "Bad Request"}.to_json
+        end
+
         error 405 do
-          response.header['Allow'] = 'GET'
+          response.header['Allow'] = 'GET, POST'
           {:code => 405, :message => "Method Not Allowed"}.to_json
         end
       end
