@@ -8,7 +8,7 @@ module Webapi
 
       private
       def before_validation
-        if self.display_name.size > 10
+        if self.display_name.size > 100
           errors.add(:display_name, "size must be 10 or less.")
         end
 
