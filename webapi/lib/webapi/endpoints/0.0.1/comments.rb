@@ -22,7 +22,8 @@ Webapi::Endpoints::V001::Webapi.namespace '/comments' do
     # description 'Resiter a new comment'
     # params name, string
     # params comment, text
-    validate_parameters(params)
+    raise E::NotFoundParameter, "not found display_name parameter" if params["display_name"].nil?
+    raise E::NotFoundParameter, "not found comment parameter" if params["comment"].nil?
     comment = M::Comment.create(:display_name => params["display_name"],
                       :comment => params["comment"])
     respond_with(R::Comment.new(comment).generate)
@@ -56,10 +57,5 @@ Webapi::Endpoints::V001::Webapi.namespace '/comments' do
     raise E::UnknownComments, params["id"] if comment.nil?
     comment.destroy
     respond_with([])
-  end
-
-  def validate_parameters(params)
-    raise E::NotFoundParameter, "not found display_name parameter" if params["display_name"].nil?
-    raise E::NotFoundParameter, "not found comment parameter" if params["comment"].nil?
   end
 end
