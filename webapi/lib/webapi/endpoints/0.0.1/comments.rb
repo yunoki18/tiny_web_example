@@ -35,16 +35,7 @@ Webapi::Endpoints::V001::Webapi.namespace '/comments' do
 
   put '/:id' do
     # description 'Update parameter for the comment.'
-    comment = M::Comment[params["id"]]
-    raise E::UnknownComments, params["id"] if comment.nil?
-    if params["display_name"]
-      comment.display_name = params["display_name"]
-    end
-    if params["comment"]
-      comment.comment = params["comment"]
-    end
-    comment.save_changes
-    respond_with(R::Comment.new(comment).generate)
+    400
   end
 
   delete do
@@ -53,9 +44,6 @@ Webapi::Endpoints::V001::Webapi.namespace '/comments' do
 
   delete '/:id' do
     # description 'Delete the comment.'
-    comment = M::Comment[params["id"]]
-    raise E::UnknownComments, params["id"] if comment.nil?
-    comment.destroy
-    respond_with([])
+    400
   end
 end
