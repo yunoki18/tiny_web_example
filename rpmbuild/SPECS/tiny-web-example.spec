@@ -19,17 +19,15 @@ Prefix: /%{_prefix_path}
 %description
 Tiny Web Example
 
+BuildRequires: mysql-devel
+
 Requires: nginx
 Requires: mysql-server
 
 %prep
 [ -d %{name}-%{version} ] && rm -rf [ -d %{name}-%{version} ]
 git clone %{_tiny_web_example_git_uri} %{name}-%{version}
-cd %{name}-%{version}/webapi
-bundle install
-cd ../frontend
-bundle install
-cd ..
+cd %{name}-%{version}
 [ -z "%{build_id}" ] || {
   build_id=%{build_id}
   git checkout ${build_id##*git}
@@ -39,6 +37,7 @@ cd ..
 %setup -T -D
 
 %build
+RUBYDIR=/usr/bin/ruby rpmbuild/rules build
 
 %install
 [ -d ${RPM_BUILD_ROOT} ] && rm -rf ${RPM_BUILD_ROOT}
@@ -61,6 +60,7 @@ rsync -aHA `pwd`/contrib/etc/%{oname} ${RPM_BUILD_ROOT}/etc
 mkdir -p ${RPM_BUILD_ROOT}/var/log/%{oname}
 
 %clean
+RUBYDIR=/usr/bin/ruby rpmbuild/rules clean
 rm -rf $RPM_BUILD_ROOT
 
 
