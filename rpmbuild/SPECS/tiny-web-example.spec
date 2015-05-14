@@ -16,13 +16,14 @@ URL: http://example.jp/
 Source0: %{_vdc_git_uri}
 Prefix: /%{_prefix_path}
 
-%description
-Tiny Web Example
-
 BuildRequires: mysql-devel
 
 Requires: nginx
 Requires: mysql-server
+
+
+%description
+Tiny Web Example
 
 %prep
 [ -d %{name}-%{version} ] && rm -rf [ -d %{name}-%{version} ]
