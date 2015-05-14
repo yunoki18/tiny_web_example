@@ -36,14 +36,14 @@
       <div class="panel-heading">
         <div class="panel-title">
           <h4>
-            No. <%= comment.id %>
-            Name <%= comment.display_name %>
-            Created at <%= comment.created_at %>
+            No. <%= h(comment.id) %>
+            Name <%= h(comment.display_name) %>
+            Created at <%= h(comment.created_at) %>
           </h4>
         </div>
       </div>
       <div class="panel-body">
-        <%= comment.comment %>
+        <%= h(comment.comment) %>
       </div>
     </div>
   <% end %>

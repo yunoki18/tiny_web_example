@@ -3,6 +3,11 @@
 require 'sinatra/base'
 
 class WebApp < Sinatra::Base
+  helpers do
+    include Rack::Utils
+    alias_method :h, :escape_html
+  end
+
   get '/' do
     @comments = Comment.dataset.all
     erb :index
