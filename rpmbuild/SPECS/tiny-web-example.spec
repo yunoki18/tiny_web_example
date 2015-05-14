@@ -70,5 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir /etc/%{oname}
 %dir /var/log/%{oname}
 %config(noreplace) /etc/default/tiny-web-example-webapi
+%config(noreplace) /etc/default/tiny-web-example-webapp
 %config(noreplace) /etc/init/tiny-web-example-webapi.conf
+%config(noreplace) /etc/init/tiny-web-example-webapp.conf
 %config(noreplace) /etc/tiny-web-example/unicorn-common.conf
