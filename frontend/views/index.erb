@@ -43,7 +43,7 @@
         </div>
       </div>
       <div class="panel-body">
-        <%= h(comment.comment) %>
+        <%= h(comment.comment).gsub(/\r\n|\r|\n/, "<br />") %>
       </div>
     </div>
   <% end %>
