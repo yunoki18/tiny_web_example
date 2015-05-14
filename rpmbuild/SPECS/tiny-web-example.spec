@@ -63,6 +63,8 @@ mkdir -p ${RPM_BUILD_ROOT}/var/log/%{oname}
 RUBYDIR=/usr/bin/ruby rpmbuild/rules clean
 rm -rf $RPM_BUILD_ROOT
 
+%post
+/sbin/chkconfig mysqld on
 
 %files
 %defattr(-,root,root,-)
@@ -74,3 +76,5 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) /etc/init/tiny-web-example-webapi.conf
 %config(noreplace) /etc/init/tiny-web-example-webapp.conf
 %config(noreplace) /etc/tiny-web-example/unicorn-common.conf
+%config(noreplace) /etc/tiny-web-example/webapi.conf
+%config(noreplace) /etc/tiny-web-example/webapp.yml
